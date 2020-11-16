@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i,900,900i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
-
 body {
   font-family: "Fira Sans", sans-serif;
   overflow-x: hidden;
@@ -42,6 +41,7 @@ a:hover {
 .btn-primary:focus {
   background-color: #be3f1a;
   border-color: #be3f1a;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(223, 95, 58, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(223, 95, 58, 0.5);
 }
 
@@ -52,11 +52,44 @@ a:hover {
   border-color: #f78361;
 }
 
-@keyframes spin {
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #df5f3a;
+  background-color: #df5f3a;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #f78361;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  color: #fff;
+  background-color: #f8a58b;
+  border-color: #f8a58b;
+}
+
+@-webkit-keyframes spin {
   from {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
   to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -72,19 +105,18 @@ a:hover {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-right: 10px;
+  -webkit-animation-name: spin;
   animation-name: spin;
-  animation-duration: 3000ms;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
 }
 
 .form-group {
   margin-bottom: 30px;
-}
-
-.form-control {
-  height: auto;
-  padding: 10px;
 }
 
 .slc-header {
@@ -93,8 +125,15 @@ a:hover {
 
 .slc-main {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   background-size: cover;
   background-position: top;
@@ -109,11 +148,13 @@ a:hover {
   bottom: 0;
   left: 50%;
   width: 100vw;
-  background-image: url("../img/wave-mask-bottom.svg?1575018983");
+  background-image: url(../img/wave-mask-bottom.svg?1575018983);
   height: 60px;
   background-size: 1920px 60px;
   background-position: center;
   background-repeat: repeat-x;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 
@@ -122,7 +163,7 @@ a:hover {
 }
 
 .slc-main__content h2 {
-  font-size: 72px;
+  font-size: 48px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -177,7 +218,7 @@ a:hover {
 }
 
 .slc-section__title {
-  font-size: 52px;
+  font-size: 42px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -186,26 +227,14 @@ a:hover {
 
 .slc-section__title small {
   display: block;
-  font-size: 0.5em;
+  font-size: 0.6em;
   color: #df5f3a;
   margin-bottom: 10px;
 }
 
 .slc-section__content p {
-  font-size: 18px;
-  color: #999;
-}
-
-.slc-section__header .slc-section__title {
-  font-size: 42px;
-}
-
-.slc-section__header .slc-section__title small {
-  font-size: 0.6em;
-}
-
-.slc-section__header .slc-section__content p {
   font-size: 16px;
+  color: #999;
 }
 
 .slc-video {
@@ -214,6 +243,7 @@ a:hover {
   background-size: cover;
   background-position: top;
   border-radius: 4px;
+  -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -228,6 +258,8 @@ a:hover {
   text-align: center;
   color: #fff;
   background-color: #df5f3a;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: 1;
@@ -297,6 +329,7 @@ a:hover {
   color: #fff;
   margin: 0 auto 20px;
   border-radius: 50%;
+  -webkit-box-shadow: 0 7.5px 15px rgba(0, 0, 0, 0.15);
   box-shadow: 0 7.5px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -316,6 +349,7 @@ a:hover {
 .slc-form {
   position: relative;
   min-height: 100%;
+  color: #fff;
   padding: 60px;
   padding-bottom: 0 !important;
   z-index: 1;
@@ -331,71 +365,30 @@ a:hover {
   background-color: #2f59a3;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
   z-index: -1;
 }
 
-.slc-form--success::before {
-  background-color: #27ae60;
-}
-
-.slc-form__message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  transform: translateY(60px);
-  color: #fff;
-  padding: 30px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
-}
-
-.slc-form__message i {
-  font-size: 100px;
-  line-height: 1;
+.slc-form h3 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   margin-bottom: 15px;
 }
 
-.slc-form__message span {
-  font-size: 24px;
-  letter-spacing: -0.025em;
-}
-
-.slc-form--success .slc-form__message {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.slc-form form {
-  transition: all 0.3s ease-in-out;
-}
-
-.slc-form--success form {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.slc-form .invalid-feedback {
+.slc-form .error {
+  font-size: 14px;
   color: #ff6b6b;
-}
-
-.slc-form .form-control.is-invalid,
-.slc-form .was-validated .form-control:invalid {
-  border-color: #ff6b6b;
+  margin-top: 5px;
 }
 
 .slc-form .form-control {
   border-color: #fff;
+}
+
+.slc-form .form-control.error {
+  border-color: #ff6b6b;
 }
 
 .slc-form .btn {
@@ -427,9 +420,18 @@ a:hover {
 }
 
 .slc-thank {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   min-height: calc(100vh - 138px);
 }
@@ -467,23 +469,18 @@ a:hover {
   .slc-main__content {
     width: 70%;
   }
-
   .slc-section > .container > .row {
     margin: 0 -30px;
   }
-
   .slc-section > .container > .row > div {
     padding: 0 30px;
   }
-
   .slc-section__title {
     font-size: 42px;
   }
-
   .slc-section__title small {
     font-size: 0.6em;
   }
-
   .slc-section__content p {
     font-size: 16px;
   }
@@ -493,28 +490,22 @@ a:hover {
   .slc-header {
     text-align: center;
   }
-
   .slc-main__content {
     width: 100%;
     text-align: center;
   }
-
   .slc-main__content h2 {
     font-size: 52px;
   }
-
   .slc-main__content h2 small {
     font-size: 0.6em;
   }
-
   .slc-main__content p {
     font-size: 16px;
   }
-
   .slc-section > .container > .row {
     margin: 0 -30px;
   }
-
   .slc-section > .container > .row > div {
     padding: 0 30px;
   }
@@ -524,53 +515,41 @@ a:hover {
   .slc-main__content h2 {
     font-size: 42px;
   }
-
   .slc-main__content h2 small {
     font-size: 0.6em;
   }
-
   .slc-main__content p {
     font-size: 16px;
   }
-
   .slc-section {
     padding-bottom: 60px;
   }
-
   .slc-section:first-child {
     padding-top: 60px;
   }
-
   .slc-section:last-child {
     padding-bottom: 60px;
   }
-
   .slc-section > .container > .row {
     margin: 0 -15px;
   }
-
   .slc-section > .container > .row > div {
     padding: 0 15px;
     margin-bottom: 30px;
   }
-
   .slc-section > .container > .row > div:last-child {
     margin-bottom: 0;
   }
-
   .slc-section__header {
     margin-bottom: 30px;
   }
-
-  .slc-section__title,
-  .slc-section__content p {
+  .slc-section__content p,
+  .slc-section__title {
     text-align: center;
   }
-
   .slc-blocks__item i {
     font-size: 40px;
   }
-
   .slc-form {
     padding-bottom: 30px;
   }
@@ -580,19 +559,15 @@ a:hover {
   .slc-section__title {
     font-size: 32px !important;
   }
-
   .slc-form {
     padding: 30px;
   }
-
   .slc-form .form-group {
     margin-bottom: 15px;
   }
-
   .slc-footer {
     text-align: center;
   }
-
   .slc-socials {
     text-align: center;
     margin-top: 15px;
